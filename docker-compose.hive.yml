@@ -11,8 +11,8 @@ services:
       - "9083:9083"
     networks:
       - data-lake
-    depends_on:
-      - minio
+    #depends_on:
+    #  - minio
 
 networks:
   data-lake:
