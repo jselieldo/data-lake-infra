@@ -7,9 +7,9 @@ services:
       - "8080:8080"
     networks:
       - data-lake
-    depends_on:
-      - minio
-      - hive-metastore
+    #depends_on:
+    #  - minio
+    #  - hive-metastore
     volumes:
       - ./configs/trino:/etc/trino
 
