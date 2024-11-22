@@ -15,7 +15,7 @@ services:
       file: docker-compose.trino.yml
       service: trino
 
-  spark:
-    extends:
-      file: docker-compose.spark.yml
-      service: spark
+  #spark:
+  #  extends:
+  #    file: docker-compose.spark.yml
+  #    service: spark
