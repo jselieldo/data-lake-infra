@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  hive-metastore:
+    image: metabase/hive-metastore
+    container_name: hive-metastore
+    environment:
+      HIVE_METASTORE_USER: ${HIVE_USER}
+      HIVE_METASTORE_PASSWORD: ${ROOT_PASSWORD}
+      HIVE_METASTORE_PORT: 9083
+    ports:
+      - "9083:9083"
+    networks:
+      - data-lake
+    depends_on:
+      - minio
+
+networks:
+  data-lake:
+    external: true
