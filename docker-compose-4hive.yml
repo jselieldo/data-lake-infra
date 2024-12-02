@@ -9,6 +9,8 @@ services:
       DB_NAME: ${DB_NAME} # Variável fornecida no .env
       DB_USER: ${DB_USER} # Variável fornecida no .env
       DB_PASSWORD: ${DB_PASSWORD} # Variável fornecida no .env
+      S3_ACCESS_KEY: ${AWS_ACCESS_KEY_ID} # Variável fornecida no .env
+      S3_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY} # Variável fornecida no .env
       HIVE_SITE_CONF_javax_jdo_option_ConnectionURL: "jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}"
       HIVE_SITE_CONF_javax_jdo_option_ConnectionDriverName: com.mysql.cj.jdbc.Driver
       HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName: ${DB_USER}
