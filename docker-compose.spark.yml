@@ -1,20 +1,24 @@
 services:
-  spark:
-    image: bitnami/spark
-    container_name: spark
-    ports:
-      - "4040:4040"
+  spark-iceberg:
+    image: tabulario/spark-iceberg
+    container_name: spark-iceberg
+    build: spark/
     networks:
       - data-lake
-    environment:
-      SPARK_MASTER_URL: spark://spark:7077
-      SPARK_WORKER_MEMORY: 2G
-      SPARK_WORKER_CORES: 1
-    #depends_on:
-    #  - minio
-    #  - hive-metastore
     volumes:
-      - ./data/spark:/data
+      - ./warehouse:/home/iceberg/warehouse
+      - ./notebooks:/home/iceberg/notebooks/notebooks
+      - ./jars/hadoop-aws-3.3.4.jar:/opt/spark/jars/hadoop-aws-3.3.4.jar
+      - ./jars/aws-java-sdk-bundle-1.11.1026.jar:/opt/spark/jars/aws-java-sdk-bundle-1.11.1026.jar
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=us-east-1
+    ports:
+      - 8888:8888
+      - 8080:8080
+      - 10002:10000
+      - 10001:10001
 
 networks:
   data-lake:

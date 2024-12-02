@@ -12,8 +12,8 @@ services:
     environment:
       - JAVA_TOOL_OPTIONS=-Xmx4G
       - TRINO_NODE_ID=trino-node # Configuração dinâmica do ID do nó
-      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
-      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_ACCESS_KEY=${AWS_ACCESS_KEY_ID}
+      - S3_SECRET_KEY=${AWS_SECRET_ACCESS_KEY}
 networks:
   data-lake:
     external: true
