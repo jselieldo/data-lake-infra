@@ -70,6 +70,13 @@ MINIO_ROOT_PASSWORD=secure_password
 # AWS Credentials for Iceberg REST
 AWS_ACCESS_KEY_ID=admin
 AWS_SECRET_ACCESS_KEY=secure_password
+
+# Database Credentials
+DB_NAME=metastore
+DB_USER=user
+DB_PASSWORD=password
+DB_HOST=mysql_container
+DB_PORT=3306
 ```
 
 Ensure this file is not committed to version control by including `.env` in `.gitignore`.
