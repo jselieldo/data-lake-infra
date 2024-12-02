@@ -24,31 +24,12 @@ services:
       - "10000:10000"
     networks:
       - data-lake
-    depends_on:
-      mysql_container:
-        condition: service_healthy
     volumes:
       - hive-metastore-config:/opt/hive/conf
-      - ./hive-config:/opt/hive/conf:ro
-      - ./scripts:/opt/hive/scripts:ro
+      - ./configs/hive:/opt/hive/conf:ro
+      - ./scripts/hive:/opt/hive/scripts:ro
       - ./hive-jars:/opt/hive/lib:ro
       - hive-metastore-data:/home/hive
-
-  mysql_container:
-    image: mysql:8.0
-    container_name: mysql_container
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # Variável fornecida no .env
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: ${DB_NAME}
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - data-lake
 
 volumes:
   hive-metastore-config:

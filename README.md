@@ -40,8 +40,8 @@ This repository provides a Docker Compose setup to configure a data lake environ
 1. Install [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/).
 2. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/data-lake-setup.git
-   cd data-lake-setup
+   git clone https://github.com/jselieldo/data-lake-infra.git
+   cd data-lake-infra
    ```
 
 ---
