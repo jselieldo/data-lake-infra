@@ -3,7 +3,7 @@
 # Carrega as variáveis do arquivo .env
 echo "Carrega as variáveis do arquivo .env..."
 set -a
-. .env  # Use ponto (.) em vez de source
+. ./.env  # Use ponto (.) em vez de source
 set +a
 #C:\Users\josee\Downloads\data-lake-infra\configs\hive\template-core-site.xml
 # Caminho do template XML
