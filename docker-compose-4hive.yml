@@ -1,0 +1,46 @@
+services:
+  hive-metastore:
+    image: apache/hive:4.0.0
+    container_name: hive-metastore
+    environment:
+      SERVICE_NAME: metastore
+      DB_DRIVER: mysql
+      DB_HOST: mysql_container
+      DB_NAME: ${DB_NAME} # Variável fornecida no .env
+      DB_USER: ${DB_USER} # Variável fornecida no .env
+      DB_PASSWORD: ${DB_PASSWORD} # Variável fornecida no .env
+      S3_ACCESS_KEY: ${AWS_ACCESS_KEY_ID} # Variável fornecida no .env
+      S3_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY} # Variável fornecida no .env
+      HIVE_SITE_CONF_javax_jdo_option_ConnectionURL: "jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}"
+      HIVE_SITE_CONF_javax_jdo_option_ConnectionDriverName: com.mysql.cj.jdbc.Driver
+      HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName: ${DB_USER}
+      HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword: ${DB_PASSWORD}
+      HIVE_SITE_CONF_datanucleus_autoCreateSchema: "false"
+      HIVE_SITE_CONF_hive_metastore_uris: "thrift://hive-metastore:9083"
+      HIVE_CONF_DIR: /opt/hive/conf
+      SKIP_SCHEMA_INIT: false
+      HIVE_SITE_CONF_datanucleus_autoCreateTables: "true"
+    command: "/bin/bash /opt/hive/scripts/entrypoint.sh"
+    ports:
+      - "9083:9083"
+      - "10000:10000"
+    networks:
+      - data-lake
+    volumes:
+      - hive-metastore-config:/opt/hive/conf
+      - ./configs/hive:/opt/hive/conf:ro
+      - ./scripts/hive:/opt/hive/scripts:ro
+      #- ./hive-jars:/opt/hive/lib:ro
+      - ./jars/hadoop-aws-3.3.6.jar:/opt/hive/lib/hadoop-aws-3.3.6.jar
+      - ./jars/aws-java-sdk-bundle-1.11.1026.jar:/opt/hive/lib/aws-java-sdk-bundle-1.11.1026.jar
+      - ./jars/mysql-connector-j-8.3.0.jar:/opt/hive/lib/mysql-connector-j-8.3.0.jar
+      - ./jars/iceberg-hive-runtime-1.4.0.jar:/opt/hive/lib/iceberg-hive-runtime-1.4.0.jar
+      - hive-metastore-data:/home/hive
+
+volumes:
+  hive-metastore-config:
+  hive-metastore-data:
+
+networks:
+  data-lake:
+    external: true

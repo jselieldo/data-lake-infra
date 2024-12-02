@@ -1,4 +1,5 @@
 version: "3.8"
+
 services:
   minio:
     extends:
@@ -7,7 +8,7 @@ services:
 
   hive-metastore:
     extends:
-      file: docker-compose.hive.yml
+      file: docker-compose-4hive.yml
       service: hive-metastore
 
   trino:
@@ -15,7 +16,24 @@ services:
       file: docker-compose.trino.yml
       service: trino
 
-  spark:
+  rest:
     extends:
-      file: docker-compose.spark.yml
-      service: spark
+      file: docker-compose.minio.yml
+      service: rest
+
+  mc:
+    extends:
+      file: docker-compose.minio.yml
+      service: mc  
+
+networks:
+  data-lake:
+    external: true
+
+volumes:
+  minio_data:
+    driver: local
+  hive-metastore-config:
+    driver: local
+  hive-metastore-data:
+    driver: local

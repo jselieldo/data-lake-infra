@@ -1,0 +1,71 @@
+<configuration>
+  <!-- Configurações de Conexão com o Banco de Metadados -->
+  <property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}</value>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionDriverName</name>
+    <value>com.mysql.cj.jdbc.Driver</value>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionUserName</name>
+    <value>${DB_USER}</value>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionPassword</name>
+    <value>${DB_PASSWORD}</value>
+  </property>
+  <property>
+    <name>datanucleus.schema.autoCreateAll</name>
+    <value>false</value>
+  </property>
+
+  <!-- Configurações de Conexão com S3 (MinIO) -->
+  <property>
+    <name>fs.defaultFS</name>
+    <value>s3a://hive-data</value>
+  </property>
+  <property>
+    <name>hive.metastore.warehouse.dir</name>
+    <value>s3a://hive-data/warehouse</value>
+  </property>
+  <property>
+    <name>fs.s3a.endpoint</name>
+    <value>http://minio:9000</value>
+  </property>
+  <property>
+    <name>fs.s3a.access.key</name>
+    <value>${S3_ACCESS_KEY}</value>
+  </property>
+  <property>
+    <name>fs.s3a.secret.key</name>
+    <value>${S3_SECRET_KEY}</value>
+  </property>
+  <property>
+    <name>fs.s3a.path.style.access</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>fs.s3a.connection.ssl.enabled</name>
+    <value>false</value>
+  </property>
+
+  <!-- Configurações Adicionais -->
+  <property>
+    <name>hive.server2.enable.doAs</name>
+    <value>false</value>
+  </property>
+
+  <!-- Configuração do Logger -->
+  <property>
+    <name>hive.root.logger</name>
+    <value>INFO,console</value>
+  </property>
+
+  <!-- URI do Metastore -->
+  <property>
+    <name>hive.metastore.uris</name>
+    <value>thrift://hive-metastore:9083</value>
+  </property>
+</configuration>

@@ -1,18 +1,19 @@
-version: "3.8"
 services:
   trino:
-    image: trinodb/trino
+    image: trinodb/trino:414
     container_name: trino
     ports:
-      - "8080:8080"
+      - "8090:8080"
+    volumes:
+      - ./configs/trino:/etc/trino:ro  # Configurações do Trino (somente leitura)
+      - ./trino-data:/data           # Diretório de dados
     networks:
       - data-lake
-    #depends_on:
-    #  - minio
-    #  - hive-metastore
-    volumes:
-      - ./configs/trino:/etc/trino
-
+    environment:
+      - JAVA_TOOL_OPTIONS=-Xmx4G
+      - TRINO_NODE_ID=trino-node # Configuração dinâmica do ID do nó
+      - S3_ACCESS_KEY=${AWS_ACCESS_KEY_ID}
+      - S3_SECRET_KEY=${AWS_SECRET_ACCESS_KEY}
 networks:
   data-lake:
     external: true
