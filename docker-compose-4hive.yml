@@ -1,0 +1,59 @@
+services:
+  hive-metastore:
+    image: apache/hive:4.0.0
+    container_name: hive-metastore
+    environment:
+      SERVICE_NAME: metastore
+      DB_DRIVER: mysql
+      DB_HOST: mysql_container
+      DB_NAME: ${DB_NAME} # Variável fornecida no .env
+      DB_USER: ${DB_USER} # Variável fornecida no .env
+      DB_PASSWORD: ${DB_PASSWORD} # Variável fornecida no .env
+      HIVE_SITE_CONF_javax_jdo_option_ConnectionURL: "jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}"
+      HIVE_SITE_CONF_javax_jdo_option_ConnectionDriverName: com.mysql.cj.jdbc.Driver
+      HIVE_SITE_CONF_javax_jdo_option_ConnectionUserName: ${DB_USER}
+      HIVE_SITE_CONF_javax_jdo_option_ConnectionPassword: ${DB_PASSWORD}
+      HIVE_SITE_CONF_datanucleus_autoCreateSchema: "false"
+      HIVE_SITE_CONF_hive_metastore_uris: "thrift://hive-metastore:9083"
+      HIVE_CONF_DIR: /opt/hive/conf
+      SKIP_SCHEMA_INIT: false
+      HIVE_SITE_CONF_datanucleus_autoCreateTables: "true"
+    command: "/bin/bash /opt/hive/scripts/entrypoint.sh"
+    ports:
+      - "9083:9083"
+      - "10000:10000"
+    networks:
+      - data-lake
+    depends_on:
+      mysql_container:
+        condition: service_healthy
+    volumes:
+      - hive-metastore-config:/opt/hive/conf
+      - ./hive-config:/opt/hive/conf:ro
+      - ./scripts:/opt/hive/scripts:ro
+      - ./hive-jars:/opt/hive/lib:ro
+      - hive-metastore-data:/home/hive
+
+  mysql_container:
+    image: mysql:8.0
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # Variável fornecida no .env
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - data-lake
+
+volumes:
+  hive-metastore-config:
+  hive-metastore-data:
+
+networks:
+  data-lake:
+    external: true
