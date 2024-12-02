@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Carrega as variáveis do arquivo .env
+echo "Carrega as variáveis do arquivo .env..."
 set -a
 source ../.env
 set +a
