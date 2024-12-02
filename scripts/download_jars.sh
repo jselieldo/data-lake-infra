@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Diretório onde os arquivos serão salvos
-destino="../jars/"
+destino="./jars/"
 
 # Criação do diretório (caso não exista)
 mkdir -p "$destino"

@@ -3,16 +3,16 @@
 # Carrega as variáveis do arquivo .env
 echo "Carrega as variáveis do arquivo .env..."
 set -a
-. ../.env  # Use ponto (.) em vez de source
+. .env  # Use ponto (.) em vez de source
 set +a
 #C:\Users\josee\Downloads\data-lake-infra\configs\hive\template-core-site.xml
 # Caminho do template XML
-HIVE_TEMPLATE_FILE="../configs/hive/template-hive-site.xml"
-HIVE_OUTPUT_FILE="../configs/hive/hive-site.xml"
+HIVE_TEMPLATE_FILE="./configs/hive/template-hive-site.xml"
+HIVE_OUTPUT_FILE="./configs/hive/hive-site.xml"
 
-CORE_TEMPLATE_FILE="../configs/hive/template-core-site.xml"
-CORE_OUTPUT_FILE="../configs/hive/core-site.xml"
-TRINO_OUTPUT_FILE="../configs/trino/core-site.xml"
+CORE_TEMPLATE_FILE="./configs/hive/template-core-site.xml"
+CORE_OUTPUT_FILE="./configs/hive/core-site.xml"
+TRINO_OUTPUT_FILE="./configs/trino/core-site.xml"
 
 # Substitui as variáveis no arquivo template
 echo "Substituindo variáveis de ambiente no template..."
