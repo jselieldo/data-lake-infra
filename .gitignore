@@ -1,2 +1,4 @@
 *.env
 jars/
+configs/hive/core-site.xml
+configs/hive/hive-site.xml
