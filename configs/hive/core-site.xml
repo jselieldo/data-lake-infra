@@ -10,11 +10,11 @@
   </property>
   <property>
     <name>fs.s3a.access.key</name>
-    <value>${S3_ACCESS_KEY}</value>
+    <value>admin</value>
   </property>
   <property>
     <name>fs.s3a.secret.key</name>
-    <value>${S3_SECRET_KEY}</value>
+    <value>password</value>
   </property>
   <property>
     <name>fs.s3a.path.style.access</name>

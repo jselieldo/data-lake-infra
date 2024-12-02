@@ -2,7 +2,7 @@
   <!-- Configurações de Conexão com o Banco de Metadados -->
   <property>
     <name>javax.jdo.option.ConnectionURL</name>
-    <value>jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}</value>
+    <value>jdbc:mysql://mysql_container:3306/metastore</value>
   </property>
   <property>
     <name>javax.jdo.option.ConnectionDriverName</name>
@@ -10,11 +10,11 @@
   </property>
   <property>
     <name>javax.jdo.option.ConnectionUserName</name>
-    <value>${DB_USER}</value>
+    <value>user_mysql</value>
   </property>
   <property>
     <name>javax.jdo.option.ConnectionPassword</name>
-    <value>${DB_PASSWORD}</value>
+    <value>Rzd8Vluoq4rSOLe6di*I</value>
   </property>
   <property>
     <name>datanucleus.schema.autoCreateAll</name>
@@ -36,11 +36,11 @@
   </property>
   <property>
     <name>fs.s3a.access.key</name>
-    <value>${S3_ACCESS_KEY}</value>
+    <value>admin</value>
   </property>
   <property>
     <name>fs.s3a.secret.key</name>
-    <value>${S3_SECRET_KEY}</value>
+    <value>password</value>
   </property>
   <property>
     <name>fs.s3a.path.style.access</name>
