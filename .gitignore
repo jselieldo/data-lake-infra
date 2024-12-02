@@ -5,3 +5,5 @@ configs/hive/hive-site.xml
 configs/trino/core-site.xml
 configs/trino/catalog/*.*
 configs/trino/catalog/
+trino-data/
+trino-data/*.*

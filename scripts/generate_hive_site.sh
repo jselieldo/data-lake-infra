@@ -42,8 +42,3 @@ echo "Arquivo core-site.xml gerado com sucesso em $CORE_OUTPUT_FILE"
 
 cp $CORE_OUTPUT_FILE $TRINO_OUTPUT_FILE
 echo "Arquivo core-site.xml gerado com sucesso em $TRINO_OUTPUT_FILE"
-
-
-
-
-
