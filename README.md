@@ -44,15 +44,15 @@ This repository provides a Docker Compose setup to configure a data lake environ
    cd data-lake-infra
    ```
 3. Download necessary JARs:
-  ```bash
+   ```bash
    sh ./scripts/download_jars.sh
    ```
 4. Generate the Hive configuration file:
-  ```bash
+   ```bash
    sh ./scripts/generate_hive_site.sh
    ```
 5. Prepare Trino configuration:
-  ```bash
+   ```bash
    sh ./scripts/prepare_trino.sh
    ```
 ---
