@@ -12,6 +12,7 @@ HIVE_OUTPUT_FILE="../configs/hive/hive-site.xml"
 
 CORE_TEMPLATE_FILE="../configs/hive/template-core-site.xml"
 CORE_OUTPUT_FILE="../configs/hive/core-site.xml"
+TRINO_OUTPUT_FILE="../configs/trino/core-site.xml"
 
 # Substitui as variáveis no arquivo template
 echo "Substituindo variáveis de ambiente no template..."
@@ -37,8 +38,12 @@ sed -e "s|\${DB_HOST}|$DB_HOST|g" \
     -e "s|\${S3_ACCESS_KEY}|$AWS_ACCESS_KEY_ID|g" \
     -e "s|\${S3_SECRET_KEY}|$AWS_SECRET_ACCESS_KEY|g" \
     $CORE_TEMPLATE_FILE > $CORE_OUTPUT_FILE
-
 echo "Arquivo core-site.xml gerado com sucesso em $CORE_OUTPUT_FILE"
+
+cp $CORE_OUTPUT_FILE $TRINO_OUTPUT_FILE
+echo "Arquivo core-site.xml gerado com sucesso em $TRINO_OUTPUT_FILE"
+
+
 
 
 

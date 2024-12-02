@@ -2,3 +2,6 @@
 jars/
 configs/hive/core-site.xml
 configs/hive/hive-site.xml
+configs/trino/core-site.xml
+configs/trino/catalog/*.*
+configs/trino/catalog/
