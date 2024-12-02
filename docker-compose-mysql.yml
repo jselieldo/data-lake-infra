@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - mysql_log:/var/log/mysql
+    ports:
+      - "${DB_PORT}:3306"
+    networks:
+      - data-lake
+    mem_limit: 1g
+    cpus: "0.25"  
+volumes:
+  mysql_data:
+  mysql_log:
+networks:
+  data-lake:
+    external: true
