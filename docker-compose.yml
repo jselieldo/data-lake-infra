@@ -19,7 +19,7 @@ services:
   rest:
     extends:
       file: docker-compose.minio.yml
-      service: iceberg-rest
+      service: rest
 
   mc:
     extends:
