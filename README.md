@@ -43,15 +43,19 @@ This repository provides a Docker Compose setup to configure a data lake environ
    git clone https://github.com/jselieldo/data-lake-infra.git
    cd data-lake-infra
    ```
-3. Download necessary JARs:
+3. If the Docker network data-lake does not exist, create it using the following command:
+   ```bash
+   docker network create data-lake
+   ```
+4. Download necessary JARs:
    ```bash
    sh ./scripts/download_jars.sh
    ```
-4. Generate the Hive configuration file:
+5. Generate the Hive configuration file:
    ```bash
    sh ./scripts/generate_hive_site.sh
    ```
-5. Prepare Trino configuration:
+6. Prepare Trino configuration:
    ```bash
    sh ./scripts/prepare_trino.sh
    ```
