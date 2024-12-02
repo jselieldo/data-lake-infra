@@ -5,7 +5,7 @@ echo "Carrega as variáveis do arquivo .env..."
 set -a
 . ../.env  # Use ponto (.) em vez de source
 set +a
-
+#C:\Users\josee\Downloads\data-lake-infra\configs\hive\template-core-site.xml
 # Caminho do template XML
 HIVE_TEMPLATE_FILE="../configs/hive/template-hive-site.xml"
 HIVE_OUTPUT_FILE="../configs/hive/hive-site.xml"
@@ -31,7 +31,7 @@ echo "Arquivo hive-site.xml gerado com sucesso em $HIVE_OUTPUT_FILE"
 echo "Substituindo variáveis de ambiente no template..."
 sed -e "s|\${DB_HOST}|$DB_HOST|g" \
     -e "s|\${DB_PORT}|$DB_PORT|g" \
-    -e "s|\${DB_NAME}|$DB_NAME|g" \ 
+    -e "s|\${DB_NAME}|$DB_NAME|g" \
     -e "s|\${DB_USER}|$DB_USER|g" \
     -e "s|\${DB_PASSWORD}|$DB_PASSWORD|g" \
     -e "s|\${S3_ACCESS_KEY}|$AWS_ACCESS_KEY_ID|g" \
