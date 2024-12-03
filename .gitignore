@@ -7,3 +7,5 @@ configs/trino/catalog/*.*
 configs/trino/catalog/
 trino-data/
 trino-data/*.*
+*credential*
+*__pycache__
