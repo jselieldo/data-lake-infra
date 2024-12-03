@@ -9,3 +9,4 @@ trino-data/
 trino-data/*.*
 *credential*
 *__pycache__
+*warehouse/
